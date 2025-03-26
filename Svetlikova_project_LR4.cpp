@@ -2,18 +2,62 @@
 #include <map>
 #include <string>
 #include <functional>
+#include <limits>
 
 using namespace std;
 
 double a;
 double b;
 
-function<void()> enter_number(double&var_link,string label){
-    //branch_fun_1
+bool user_input(string input){
+    if (input.empty())return false;
+    try{
+        double number=stod(input);
+        
+    }
+    catch(...)
+    {return false;}
+    return true;
 }
+
+//branch_func_0
+function<void()>enter_choice(int&var_link,string label){
+    return[&var_link,label](){
+        string raw_input;
+        cout<<label<<" = ";
+        getline(cin,raw_input);
+        while (!user_input(raw_input))
+        {
+            cout<<label<<" = ";
+            getline(cin,raw_input);
+
+        }
+        var_link=stoi(raw_input);
+    };
+
+}
+//branch_func_1
+function<void()>enter_number(double&var_link,string label){
+    return[&var_link,label](){
+        string raw_input;
+        cout<<label<<": ";
+        getline(cin,raw_input);
+        while (!user_input(raw_input))
+        {
+            cout<<label<<": ";
+            getline(cin,raw_input);
+
+        }
+        var_link=stod(raw_input);
+    };
+
+}
+
+
 void modul(){
-    //branch_fun_2
+    //branch_func_2
 }
+
 void argument(){
     //branch_fun_3
 }
@@ -26,32 +70,33 @@ int main(){
 
     map<int, menu_item > menu = {
         {1,{"Bвод вещественной части комплексного числа - a",enter_number(a,"введите целую часть комсплексного числа - а")}},
-        {2,{"Bвод мнимой части комплексного числа - b",enter_number(b,"введите мнимую часть комсплексного числа - b")}},
+        {2,{"Bвод мнимой части комплексного числа - b",enter_number(b,"введите целую часть комсплексного числа - b")}},
         {3,{"Найти модуль комплексного числа",modul}},
         {4,{"Найти аргумент комплексного числа",argument}},
         
     };
-    double choice = 0;
+    int choice = 0;
 
-    cout<<"Меню: "<<endl;
-    for (const auto& item : menu){
-        cout<<"Task "<<item.first<<". "<<item.second.title<<endl;
-    }
-    cout<<"0. Выход"<<endl;
-    while (true){
-        enter_number(choice,"Введите номер задачи: ")();
-        if (choice==0){
-            cout<<"Вы вышли из программы"<<endl;
+    while (true) {
+        cout << "Меню:" <<endl;
+        for (const auto& item : menu) {
+            cout << "Task " << item.first << ". " << item.second.title << endl;
+        }
+        cout << "0. Выход" << std::endl;
+        cout << "Введите номер пункта: ";
+        cin >> choice;
+
+        if (choice == 0) {
+            cout << "Вы вышли из программы" << endl;
             break;
         }
-        cout<<"==========Action=========="<<endl;
-        if (menu.find(choice)!=menu.end()){
-            menu[choice].action;
+        cout << endl;
+        if (menu.find(choice) != menu.end()) {
+            menu[choice].action();
+        } else {
+            cout << "Некорректный ввод.";
         }
-        else{
-            cout<<"Некорректный ввод. ";
-        }
-        cout<<endl;
+        cout << endl ;
     }
     return 0;
 }
