@@ -56,7 +56,8 @@ function<void()>enter_number(double&var_link,string label){
 
 
 void modul(){
-
+    
+    cout<<"комплексная часть числа а= "<<a<<"  комплексная часть числа b= "<<b<<endl;
     //branch_fun_2
     cout<<"модуль комплексного числа: "<<pow((a*a+b*b),0.5)<<endl;
 
@@ -64,19 +65,19 @@ void modul(){
 
 void argument(){
     //branch_fun_3
-    cout<<"комплексная часть числа а= "<<a<<"  комплексная часть числа b= "<<b<<endl;
+    cout<<"комплексная часть числа а= "<<a<<"  комплексная часть числа b= "<<b<<endl;    
     if (a>0){
-        cout<<"аргумент функции"<<atan2(b,a)<<endl;
+        cout<<"аргумент функции: "<<atan2(b,a)<<endl;
     }
     if (a<0 && b>0){
-        cout<<"аргумент функции"<<atan2(b,a)+acos(-1.0) <<endl;
+        cout<<"аргумент функции: "<<atan2(b,a)+acos(-1.0) <<endl;
     }if(a<0 && b<0){ 
-        cout<<"аргумент функции"<<atan2(b,a)-acos(-1.0) <<endl;
+        cout<<"аргумент функции: "<<atan2(b,a)-acos(-1.0) <<endl;
     }if(a==0&&b>0){
-        cout<<"аргумент функции"<<acos(-1.0)/2<<endl;
+        cout<<"аргумент функции: "<<acos(-1.0)/2<<endl;
     }
     if(a==0&&b<0){
-        cout<<"аргумент функции"<<- acos(-1.0)/2 <<endl;
+        cout<<"аргумент функции: "<<- acos(-1.0)/2 <<endl;
     }if (a==0 && b==0){
         cout<<"аргумента не существует"<<endl;
     }
