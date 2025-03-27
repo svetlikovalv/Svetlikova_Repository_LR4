@@ -2,6 +2,7 @@
 #include <map>
 #include <string>
 #include <functional>
+#include <limits>
 
 using namespace std;
 
@@ -35,13 +36,28 @@ function<void()>enter_choice(int&var_link,string label){
     };
 
 }
+//branch_func_1
+function<void()>enter_number(double&var_link,string label){
+    return[&var_link,label](){
+        string raw_input;
+        cout<<label<<": ";
+        getline(cin,raw_input);
+        while (!user_input(raw_input))
+        {
+            cout<<label<<": ";
+            getline(cin,raw_input);
 
-function<void()> enter_number(double&var_link,string label){
-    //branch_fun_1
+        }
+        var_link=stod(raw_input);
+    };
+
 }
+
+
 void modul(){
-    //branch_fun_2
+    //branch_func_2
 }
+
 void argument(){
     //branch_fun_3
 }
