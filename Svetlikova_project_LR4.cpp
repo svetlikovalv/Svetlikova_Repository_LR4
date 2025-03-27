@@ -2,6 +2,7 @@
 #include <map>
 #include <string>
 #include <functional>
+#include <cmath>
 
 #include <cmath>
 
@@ -47,6 +48,7 @@ bool user_input(string input){
     catch(...)
     {return false;}
     return true;
+
 }
 
 //branch_func_0
@@ -92,6 +94,23 @@ void modul(){
 
 void argument(){
     //branch_fun_3
+    cout<<"комплексная часть числа а= "<<a<<"  комплексная часть числа b= "<<b<<endl;
+    if (a>0){
+        cout<<"аргумент функции"<<atan2(b,a)<<endl;
+    }
+    if (a<0 && b>0){
+        cout<<"аргумент функции"<<atan2(b,a)+acos(-1.0) <<endl;
+    }if(a<0 && b<0){ 
+        cout<<"аргумент функции"<<atan2(b,a)-acos(-1.0) <<endl;
+    }if(a==0&&b>0){
+        cout<<"аргумент функции"<<acos(-1.0)/2<<endl;
+    }
+    if(a==0&&b<0){
+        cout<<"аргумент функции"<<- acos(-1.0)/2 <<endl;
+    }if (a==0 && b==0){
+        cout<<"аргумента не существует"<<endl;
+    }
+
 }
 struct menu_item{
     string title;
