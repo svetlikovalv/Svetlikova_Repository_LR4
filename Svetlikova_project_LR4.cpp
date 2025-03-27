@@ -4,11 +4,14 @@
 #include <functional>
 #include <cmath>
 
+#include <cmath>
+
+
+
 using namespace std;
 
 double a;
 double b;
-
 bool user_input(string input){
     if (input.empty())return false;
     try{
@@ -36,12 +39,59 @@ function<void()>enter_choice(int&var_link,string label){
 
 }
 
-function<void()> enter_number(double&var_link,string label){
-    //branch_fun_1
+bool user_input(string input){
+    if (input.empty())return false;
+    try{
+        double number=stod(input);
+        
+    }
+    catch(...)
+    {return false;}
+    return true;
+
 }
+
+//branch_func_0
+function<void()>enter_choice(int&var_link,string label){
+    return[&var_link,label](){
+        string raw_input;
+        cout<<label<<" = ";
+        getline(cin,raw_input);
+        while (!user_input(raw_input))
+        {
+            cout<<label<<" = ";
+            getline(cin,raw_input);
+
+        }
+        var_link=stoi(raw_input);
+    };
+
+}
+//branch_func_1
+function<void()>enter_number(double&var_link,string label){
+    return[&var_link,label](){
+        string raw_input;
+        cout<<label<<": ";
+        getline(cin,raw_input);
+        while (!user_input(raw_input))
+        {
+            cout<<label<<": ";
+            getline(cin,raw_input);
+
+        }
+        var_link=stod(raw_input);
+    };
+
+}
+
+
 void modul(){
+
     //branch_fun_2
+    cout<<"модуль комплексного числа: "<<pow((a*a+b*b),0.5)<<endl;
+
 }
+
 void argument(){
     //branch_fun_3
     cout<<"комплексная часть числа а= "<<a<<"  комплексная часть числа b= "<<b<<endl;
